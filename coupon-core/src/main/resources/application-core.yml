@@ -1,1 +1,30 @@
-spring.application.name=coupon-core
+spring:
+  config:
+    activate:
+      on-profile: local   #local 프로필에서만 아래 설정을 적용하고 싶을 때
+  datasource:
+    hikari:
+      jdbc-url: jdbc:postgresql://localhost:5432/coupon
+      driver-class-name: org.postgresql.Driver
+      username: user
+      password: user1234
+      maximum-pool-size: 10
+      max-lifetime: 30000
+      connection-timeout: 3000
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  data:
+    redis:
+      host: localhost
+      port: 6380
+
+#spring.profiles.active : 활성화할 프로필을 명시적으로 설정
+#spring.config.activate.on-profile : 특정 프로필이 활성화 될 때만 해당 설정 적용
+#Run Configuration > Edit Configuration > Active Profiles > local, dev, prod 프로필 입력
+

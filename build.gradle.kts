@@ -42,7 +42,8 @@ subprojects {
         compileOnly("org.projectlombok:lombok")
         annotationProcessor("org.projectlombok:lombok")
         runtimeOnly("com.h2database:h2")
-        runtimeOnly("com.mysql:mysql-connector-j")
+        //runtimeOnly("com.mysql:mysql-connector-j")
+        runtimeOnly("org.postgresql:postgresql:42.7.3")
         implementation("org.springframework.boot:spring-boot-starter")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
     }

@@ -1,0 +1,28 @@
+services:
+  redis:
+    container_name: coupon-redis
+    image: redis:7.2-alpine
+    command: redis-server --port 6380
+    labels:
+      - "name=redis"
+      - "mode=standalone"
+    ports:
+      - 6380:6380
+  postgresql:
+    container_name: coupon-postgresql
+    image: postgres:13  # PostgreSQL 버전 선택 (필요에 따라 변경)
+    environment:
+      - POSTGRES_DB=coupon
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=user1234
+      - TZ=UTC
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgresql/init:/docker-entrypoint-initdb.d  # 초기화 SQL 파일 경로
+      - ./postgresql/data:/var/lib/postgresql/data  # 데이터 저장 디렉토리
+
+#docker-compose up -d
+#docker-compose : YAML 파일에 정의된 서비스(컨테이너)를 관리하기 위한 명령어
+#up : 필요한 Docker 이미지를 다운로드하고, 정의된 설정에 따라 컨테이너를 실행
+#-d : 컨테이너를 백그라운드에서 실행
