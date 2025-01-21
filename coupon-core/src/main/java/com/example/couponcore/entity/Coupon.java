@@ -1,14 +1,20 @@
 package com.example.couponcore.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="cupons")
+@Table(name="coupons")
 @Getter
-public class Cupon extends BaseTimeEntity{
+@Builder           //생성자나 setter를 사용하지 않고 객체 생성, NoArgsConstructor 와 함께 쓸때는 AllArgsConstructor 필요
+@NoArgsConstructor      //기본생성자. JPA 기본생성자 필요 <-> AllArgsConstructor 모든 필드를 포함한 생성자 생성
+@AllArgsConstructor
+public class Coupon extends BaseTimeEntity{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,7 +24,7 @@ public class Cupon extends BaseTimeEntity{
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private CuponGubun cuponGubun;
+    private CouponGubun couponGubun;
 
     private Integer totalCnt;
 
@@ -40,7 +46,7 @@ public class Cupon extends BaseTimeEntity{
 
     //쿠폰 발급이 가능한지 수량 확인
     public boolean availableIssueCoupon(){
-        if(issueCnt == null){
+        if(totalCnt == null){
             return true;
         }
         return totalCnt > issueCnt;
