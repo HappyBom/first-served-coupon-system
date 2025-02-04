@@ -13,5 +13,5 @@ public class CouponIssueException extends RuntimeException{
         this.message = message;
     }
 
-
+    //throw new CouponIssueException(errorCode, message)
 }
