@@ -1,5 +1,7 @@
 package com.example.couponcore.entity;
 
+import com.example.couponcore.exception.CouponIssueException;
+import com.example.couponcore.exception.ErrorCode;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -62,11 +64,11 @@ public class Coupon extends BaseTimeEntity{
     public void couponIssue(){
 
         if(!availableIssueCoupon()){
-            throw new RuntimeException("쿠폰 발급 수량 검증 오류");   //추후, customException 정의하기!
+            throw new CouponIssueException(ErrorCode.INVALID_COUPON_ISSUE_CNT, "발급 가능한 쿠폰 수량을 초과하였습니다. totoal : %s, issued : %s".formatted(totalCnt, issueCnt));
         }
 
         if(!availableIssueDate()){
-            throw new RuntimeException("쿠폰 발급 기간 검증 오류");
+            throw new CouponIssueException(ErrorCode.INVALID_COUPON_ISSUE_DATE, "발급 가능한 일자가 아닙니다. request : %s, issueSt : %s, issueEnd : %s".formatted(LocalDateTime.now(), issueSt, issueEnd));
         }
 
         issueCnt++;

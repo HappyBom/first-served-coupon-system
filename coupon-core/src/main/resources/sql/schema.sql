@@ -32,7 +32,7 @@ CREATE TABLE coupon_issues (
     , user_id      BIGINT NOT NULL
     , issue_dt     TIMESTAMP NOT NULL
     , use_dt       TIMESTAMP NULL
-    , creat_dt     TIMESTAMP NOT NULL
+    , create_dt     TIMESTAMP NOT NULL
     , update_dt    TIMESTAMP NOT NULL
 );
 
@@ -41,5 +41,12 @@ COMMENT ON COLUMN coupon_issues.coupon_id IS '쿠폰 ID' ;
 COMMENT ON COLUMN coupon_issues.user_id IS '유저 ID' ;
 COMMENT ON COLUMN coupon_issues.issue_dt IS '쿠폰 발급 일시' ;
 COMMENT ON COLUMN coupon_issues.use_dt IS '쿠폰 사용 일시' ;
-COMMENT ON COLUMN coupon_issues.creat_dt IS '생성일' ;
+COMMENT ON COLUMN coupon_issues.create_dt IS '생성일' ;
 COMMENT ON COLUMN coupon_issues.update_dt IS '수정일' ;
+
+
+--ALTER TABLE 기존_테이블명 RENAME TO 새로운_테이블명;
+--ALTER TABLE 테이블명 RENAME COLUMN 기존_컬럼명 TO 새로운_컬럼명;
+
+ALTER TABLE coupon_issues RENAME COLUMN creat_dt TO create_dt;
+commit;

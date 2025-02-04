@@ -1,17 +1,16 @@
 package com.example.couponcore.entity;
 
+import com.example.couponcore.exception.CouponIssueException;
+import com.example.couponcore.exception.ErrorCode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
 class CouponTest {
 
     @Test
@@ -143,7 +142,8 @@ class CouponTest {
                 .build();
 
         //when & then
-        Assertions.assertThrows(RuntimeException.class, () -> coupon.couponIssue());
+        CouponIssueException exception = Assertions.assertThrows(CouponIssueException.class, () -> coupon.couponIssue());
+        Assertions.assertEquals(exception.getErrorCode(), ErrorCode.INVALID_COUPON_ISSUE_CNT);
     }
 
 
@@ -159,6 +159,7 @@ class CouponTest {
                 .build();
 
         //when & then
-        Assertions.assertThrows(RuntimeException.class, () -> coupon.couponIssue());
+        CouponIssueException exception = Assertions.assertThrows(CouponIssueException.class, () -> coupon.couponIssue());
+        Assertions.assertEquals(exception.getErrorCode(), ErrorCode.INVALID_COUPON_ISSUE_DATE);
     }
 }

@@ -4,7 +4,7 @@ spring:
       on-profile: local   #local 프로필에서만 아래 설정을 적용하고 싶을 때
   datasource:
     hikari:
-      jdbc-url: jdbc:postgresql://localhost:5432/coupon
+      jdbc-url: jdbc:postgresql://localhost:5432/postgres
       driver-class-name: org.postgresql.Driver
       username: user
       password: user1234

@@ -44,6 +44,10 @@ subprojects {
         runtimeOnly("com.h2database:h2")
         //runtimeOnly("com.mysql:mysql-connector-j")
         runtimeOnly("org.postgresql:postgresql:42.7.3")
+        implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
+        annotationProcessor("com.querydsl:querydsl-apt:5.0.0:jakarta")
+        annotationProcessor("jakarta.annotation:jakarta.annotation-api")
+        annotationProcessor("jakarta.persistence:jakarta.persistence-api")
         implementation("org.springframework.boot:spring-boot-starter")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
     }
