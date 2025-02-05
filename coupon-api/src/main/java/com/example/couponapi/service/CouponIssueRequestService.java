@@ -15,12 +15,20 @@ public class CouponIssueRequestService {
     private final CouponIssueService couponIssueService;
     private final DistributeLockExecutor distributeLockExecutor;
 
-    public void issueRequest_V1(CouponIssueRequestDto requestDto){
+    //redis 락
+    /*public void issueRequest_V1(CouponIssueRequestDto requestDto){
         distributeLockExecutor.execute("lock" + requestDto.couponId(), 10000, 10000, () -> {
             couponIssueService.issue(requestDto.couponId(), requestDto.userId());
             log.info("쿠폰 발급 완료! couponId : %s, userId : %s".formatted(requestDto.couponId(), requestDto.userId()));
         });
-    }
+    }*/
     //() : 매개변수 없음, ->{} : 실행할 코드 블록 정의
+
+
+    //PESSMISTIC LOCK(비관적락)
+    public void issueRequest_V1(CouponIssueRequestDto requestDto){
+        couponIssueService.issue(requestDto.couponId(), requestDto.userId());
+        log.info("쿠폰 발급 완료! couponId : %s, userId : %s".formatted(requestDto.couponId(), requestDto.userId()));
+    }
 
 }
