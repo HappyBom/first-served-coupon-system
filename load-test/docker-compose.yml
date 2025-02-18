@@ -5,16 +5,18 @@ services:
       - "8089:8089"
     volumes:
       - ./:/mnt/locust
-    command: -f /mnt/locust/locustfile-issueV1.py --master -H http://host.docker.internal:8080
+    command: -f /mnt/locust/locustfile-async-issueV2.py --master -H http://host.docker.internal:8080
 
   worker:
     image: locustio/locust
     volumes:
       - ./:/mnt/locust
-    command: -f /mnt/locust/locustfile-issueV1.py --worker --master-host master
+    command: -f /mnt/locust/locustfile-async-issueV2.py --worker --master-host master
 
 #cd load-test  --first served coupon\load-test 에서 아래 명령어 실행
 #docker-compose up -d
 
 #http://localhost:8089/
 #docker-compose up -d --scale worker=3    부하 생성 서버 증가
+
+#docker-compose dowm
