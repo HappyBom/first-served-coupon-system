@@ -60,7 +60,6 @@ public class Coupon extends BaseTimeEntity{
         return issueSt.isBefore(now) && issueEnd.isAfter(now);  //now 보다 이전 이고, 이후 인지
     }
 
-
     public void couponIssue(){
 
         if(!availableIssueCoupon()){
@@ -72,6 +71,11 @@ public class Coupon extends BaseTimeEntity{
         }
 
         issueCnt++;
+    }
+
+    public boolean isIssueComplete(){
+        LocalDateTime now = LocalDateTime.now();
+        return issueEnd.isBefore(now) || !availableIssueCoupon();
     }
 
 }

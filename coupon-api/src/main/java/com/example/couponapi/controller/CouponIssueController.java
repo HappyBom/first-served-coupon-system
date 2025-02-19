@@ -16,7 +16,19 @@ public class CouponIssueController {
 
     @PostMapping("/v1/issue")
     public CouponIssueResponseDto issue_V1(@RequestBody CouponIssueRequestDto requestDto){
-        couponIssueRequestService.issueRequest_V1(requestDto);
+        couponIssueRequestService.issueRequestV1(requestDto);  //동기식
+        return new CouponIssueResponseDto(true, null);
+    }
+
+    @PostMapping("/v1/issue-async")
+    public CouponIssueResponseDto asuncIssue_V1(@RequestBody CouponIssueRequestDto requestDto){
+        couponIssueRequestService.asyncIssueRequestV1(requestDto);
+        return new CouponIssueResponseDto(true, null);
+    }
+
+    @PostMapping("/v2/issue-async")
+    public CouponIssueResponseDto asuncIssue_V2(@RequestBody CouponIssueRequestDto requestDto){
+        couponIssueRequestService.asyncIssueRequestV2(requestDto);
         return new CouponIssueResponseDto(true, null);
     }
 

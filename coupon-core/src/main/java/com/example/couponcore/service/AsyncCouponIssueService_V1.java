@@ -1,10 +1,9 @@
 package com.example.couponcore.service;
 
 import com.example.couponcore.component.DistributeLockExecutor;
-import com.example.couponcore.entity.Coupon;
 import com.example.couponcore.exception.CouponIssueException;
 import com.example.couponcore.exception.ErrorCode;
-import com.example.couponcore.repository.redis.CouponRedisEntity;
+import com.example.couponcore.repository.redis.dto.CouponRedisEntity;
 import com.example.couponcore.repository.redis.RedisRepository;
 import com.example.couponcore.repository.redis.dto.CouponIssueRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -19,7 +18,7 @@ import static com.example.couponcore.util.CouponRedisUtil.getIssueRequestQueueKe
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class AsyncCouponIssueService {
+public class AsyncCouponIssueService_V1 {
 
     private final RedisRepository redisRepository;
     private final CouponIssueRedisService couponIssueRedisService;
@@ -44,7 +43,7 @@ public class AsyncCouponIssueService {
 
         });
     }
-    
+
     //레디스 캐시 적용 전
     /*public void issue(long couponId, long userId){
 

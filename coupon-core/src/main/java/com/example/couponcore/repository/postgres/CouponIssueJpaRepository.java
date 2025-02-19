@@ -1,4 +1,4 @@
-package com.example.couponcore.repository;
+package com.example.couponcore.repository.postgres;
 
 import com.example.couponcore.entity.CouponIssue;
 import org.springframework.data.jpa.repository.JpaRepository;

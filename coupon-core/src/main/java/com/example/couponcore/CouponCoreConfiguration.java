@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableAspectJAutoProxy(exposeProxy = true)
 @EnableCaching
 @ComponentScan
-@EnableJpaAuditing  //Spring Boot의 메인 애플리케이션 클래스에서 선언 ??
+@EnableJpaAuditing
 @EnableAutoConfiguration
 public class CouponCoreConfiguration {
 }
