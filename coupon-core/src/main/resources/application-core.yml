@@ -23,34 +23,28 @@ spring:
     redis:
       host: localhost
       port: 6380
-  cache:
-    type: redis
 ---
 spring:
   config:
     activate:
-      on-profile: test
+      on-profile: prod
   datasource:
     hikari:
-      jdbc-url: jdbc:postgresql://localhost:5432/postgres
+      jdbc-url: jdbc:postgresql://PROD_URL:5432/postgres
       driver-class-name: org.postgresql.Driver
-      username: user
-      password: user1234
+      username: PROD_USER_NAME
+      password: PROD_PASSWORD
       maximum-pool-size: 10
       max-lifetime: 30000
       connection-timeout: 3000
   jpa:
     hibernate:
       ddl-auto: none
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.PostgreSQLDialect
   data:
     redis:
-      host: localhost
+      host: PROD_URL
       port: 6380
+
 #spring.profiles.active : 활성화할 프로필을 명시적으로 설정
 #spring.config.activate.on-profile : 특정 프로필이 활성화 될 때만 해당 설정 적용
 #Run Configuration > Edit Configuration > Active Profiles > local, dev, prod 프로필 입력

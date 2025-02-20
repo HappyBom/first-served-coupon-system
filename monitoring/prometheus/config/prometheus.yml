@@ -1,0 +1,15 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: "coupon-api"
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['host.docker.internal:8080']
+  - job_name: "coupon-consumer"
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [ 'host.docker.internal:8081' ]
+
+#scrape_configs : 수집 대상 설정(Prometheus가 메트릭을 가져올 서비스)ㄱ
+#metrics_path : Spring Boot Actuator가 제공하는 엔드포인트로, Spring Boot 애플리케이션의 메트릭을 Prometheus 형식으로 노출
